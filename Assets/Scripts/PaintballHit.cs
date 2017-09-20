@@ -13,5 +13,7 @@ public class PaintballHit : MonoBehaviour {
         GetComponent<Renderer>().material.color = col;
 
         Destroy(obj);
+        
+        gameObject.layer = LayerMask.NameToLayer("Outline");
     }
 }

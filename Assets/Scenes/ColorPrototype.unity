@@ -498,7 +498,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1150185749}
-  m_LocalRotation: {x: -0.3944955, y: -0.32508287, z: 0.15158908, w: -0.8459996}
+  m_LocalRotation: {x: -0.39449543, y: -0.32508284, z: 0.15158907, w: -0.8459995}
   m_LocalPosition: {x: 0.64, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -996,6 +996,7 @@ GameObject:
   - component: {fileID: 1825669154}
   - component: {fileID: 1825669153}
   - component: {fileID: 1825669152}
+  - component: {fileID: 1825669157}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1073,6 +1074,35 @@ Transform:
   m_Father: {fileID: 1322503159}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1825669157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1825669151}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71409e1f6d0ac714aa1f38604715fa2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Post_Outline: {fileID: 4800000, guid: eea9c31b7a8b0d1448e49e152632fa40, type: 3}
+  DrawSimple: {fileID: 4800000, guid: 58f0aec887dd89f40bbbc0d8fa9a45d3, type: 3}
+--- !u!1 &1919908234 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1383389714060786, guid: 0c618008dd8e4924b9885447735a82ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 5874317}
+--- !u!122 &1919908240
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1919908234}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4279440383
+  m_Size: 0.3
 --- !u!1001 &2057692733
 Prefab:
   m_ObjectHideFlags: 0
