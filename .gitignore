@@ -1,5 +1,6 @@
 # OS temp files
-*.DS_Store
+.DS_Store
+*._.*
 
 # Unity directories
 [Ll]ibrary/
