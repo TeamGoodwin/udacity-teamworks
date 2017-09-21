@@ -24,4 +24,10 @@ public class BallBehaviour : MonoBehaviour {
     {
         return new Color(Random.value, Random.value, Random.value);
     }
+
+	// If this object hits something, the object destroys itself
+	void OnCollisionEnter(Collision collision)
+	{
+		Destroy (gameObject);
+	}
 }

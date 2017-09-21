@@ -371,7 +371,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4165565730141800, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1383389714060786, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
       propertyPath: m_Name
@@ -452,7 +452,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.4
+  m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -498,7 +498,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1150185749}
-  m_LocalRotation: {x: -0.39449543, y: -0.32508284, z: 0.15158907, w: -0.8459995}
+  m_LocalRotation: {x: -0.3944955, y: -0.32508287, z: 0.15158908, w: -0.8459996}
   m_LocalPosition: {x: 0.64, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -580,7 +580,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 1672801669732330, guid: 4517b74bffdd4d745b4ef21af909dfea, type: 2}
   shootSpeed: 14
-  shootOffset: 0.5
+  shootOffset: 0.2
+  singleShot: 1
+  continuous: 0
 --- !u!4 &1322503159
 Transform:
   m_ObjectHideFlags: 0
@@ -724,7 +726,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4165565730141800, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1383389714060786, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
       propertyPath: m_Name
@@ -775,85 +777,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1640046823
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1640046825}
-  - component: {fileID: 1640046824}
-  m_Layer: 0
-  m_Name: Directional Light (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &1640046824
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1640046823}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.2
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &1640046825
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1640046823}
-  m_LocalRotation: {x: -0.3971312, y: 0.30997562, z: -0.144544, w: -0.8516507}
-  m_LocalPosition: {x: 0.64, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 50.000004, y: 320, z: 0}
 --- !u!1 &1769779752
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,7 +898,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4165565730141800, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1383389714060786, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
       propertyPath: m_Name
