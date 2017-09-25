@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AmmoUpdate : MonoBehaviour {
+	public BallShooter ballShooter;
+
+	void Start()
+	{
+		ballShooter.weaponChanged += AmmoUpdated;
+	}
 
 	public void AmmoUpdated(Ammo ammo)
 	{
