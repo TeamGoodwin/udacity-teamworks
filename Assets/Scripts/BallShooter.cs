@@ -189,6 +189,17 @@ public class BallShooter : MonoBehaviour {
 		// ... set the line renderer to start at the gun and finish forward of the gun the determined distance.
 		m_GunFlare.SetPosition(0, m_spawnPoint.transform.position);
 		m_GunFlare.SetPosition(1, m_spawnPoint.transform.position + m_spawnPoint.transform.forward * lineLength);
+
+		RaycastHit hit;
+		if (Physics.Raycast (m_spawnPoint.transform.position, m_spawnPoint.transform.forward, out hit)) {
+			if (hit.collider != null) {
+				PaintballHit pbHit = hit.collider.gameObject.GetComponent<PaintballHit> ();
+				if (pbHit) {
+					pbHit.LaserHit (ammoProps.color);
+				}
+			}
+		}
+		
 	}
 
 	private IEnumerator MoveLineRenderer (float lineLength)
