@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(LineRenderer))]
 public class BallShooter : MonoBehaviour {
 
 	// Const properties
@@ -27,7 +28,8 @@ public class BallShooter : MonoBehaviour {
 	// Ball properoties
 	public float shootSpeed = 20;				// How fast does the ammo fire
 	public GameObject ballPrefab;				// What object for the ammo?
-
+	public AudioClip ballFireClip;				// Sound of the firing paintball
+		
 	// Hidden public variables
 	public Action<Ammo> weaponChanged;			//  Notifcations when the weapon has been changed
 
@@ -103,7 +105,9 @@ public class BallShooter : MonoBehaviour {
 
 	void UpdateWeapon()
 	{
+		if (weaponChanged != null) {
 			weaponChanged (ammoProps);
+		}
 	}
 
 	void OnValidate()
@@ -119,7 +123,6 @@ public class BallShooter : MonoBehaviour {
 	{
 		ammoProps = new Ammo ();
 		UpdateWeapon ();	
-		m_GunFlare.enabled = true;
 		ReInitVars();
 	}
 
@@ -175,6 +178,9 @@ public class BallShooter : MonoBehaviour {
 		BallBehaviour bb =  ball.GetComponent<BallBehaviour>();
 		if (bb != null) {
 			bb.ammo = ammoProps;
+		}
+		if (ballFireClip) {
+			AudioSource.PlayClipAtPoint (ballFireClip, m_spawnPoint.transform.position);
 		}
 	}
 

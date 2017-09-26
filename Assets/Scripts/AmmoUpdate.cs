@@ -5,14 +5,16 @@ using UnityEngine;
 public class AmmoUpdate : MonoBehaviour {
 	public BallShooter ballShooter;
 
+	private Renderer objRend;
+
 	void Start()
 	{
 		ballShooter.weaponChanged += AmmoUpdated;
+		objRend = GetComponent<Renderer>();
 	}
 
 	public void AmmoUpdated(Ammo ammo)
 	{
-		Renderer objRend = GetComponent<Renderer>();
 		if (objRend != null) {
 			objRend.material.color = ammo.color;
 		}
