@@ -298,6 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cd0d15842d5754b97688465a7d8e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useLaser: 0
   m_spawnPoint: {fileID: 511921679}
   weapon: {fileID: 1427909196}
   singleShot: 0
@@ -309,6 +310,7 @@ MonoBehaviour:
   pulseDelay: 0.1
   shootSpeed: 14
   ballPrefab: {fileID: 1672801669732330, guid: 4517b74bffdd4d745b4ef21af909dfea, type: 2}
+  ballFireClip: {fileID: 0}
 --- !u!120 &427129850
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -678,6 +680,16 @@ Prefab:
       propertyPath: m_Name
       value: ColorCube (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: VelocityModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: randomSeed
+      value: 17449533
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
   m_IsPrefabParent: 0
@@ -802,6 +814,41 @@ Prefab:
     - target: {fileID: 1383389714060786, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
       propertyPath: m_Name
       value: ColorCube (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: randomSeed
+      value: 856785625
+      objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: VelocityModule.enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
@@ -989,6 +1036,16 @@ Prefab:
     - target: {fileID: 4165565730141800, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0.632
+      objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: randomSeed
+      value: 1876136968
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
@@ -1227,6 +1284,16 @@ Prefab:
     - target: {fileID: 4165565730141800, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.55300003
+      objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198777151580613836, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: randomSeed
+      value: 1142290818
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
