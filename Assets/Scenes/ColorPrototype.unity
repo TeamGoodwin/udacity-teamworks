@@ -1564,6 +1564,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTimeSeconds: 90
   hudManager: {fileID: 1752582278}
+  goLevelSumamry: {fileID: 0}
+  endSceneTime: 3
 --- !u!114 &1752582276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1779,7 +1781,6 @@ GameObject:
   - component: {fileID: 1825669154}
   - component: {fileID: 1825669153}
   - component: {fileID: 1825669152}
-  - component: {fileID: 1825669157}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1858,19 +1859,6 @@ Transform:
   m_Father: {fileID: 1322503159}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1825669157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1825669151}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71409e1f6d0ac714aa1f38604715fa2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Post_Outline: {fileID: 4800000, guid: eea9c31b7a8b0d1448e49e152632fa40, type: 3}
-  DrawSimple: {fileID: 4800000, guid: 58f0aec887dd89f40bbbc0d8fa9a45d3, type: 3}
 --- !u!1 &1919908234 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1383389714060786, guid: 0c618008dd8e4924b9885447735a82ee,
@@ -1942,6 +1930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2099954097}
   - component: {fileID: 2099954096}
+  - component: {fileID: 2099954098}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -1962,6 +1951,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTimeSeconds: 90
   hudManager: {fileID: 1752582278}
+  goLevelSumamry: {fileID: 0}
+  endSceneTime: 3
 --- !u!4 &2099954097
 Transform:
   m_ObjectHideFlags: 0
@@ -1975,3 +1966,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2099954098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2099954095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0a6df72ad7641059dd80819600c29e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colours:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0, g: 1, b: 0.25517225, a: 0}
+  - {r: 0.94482756, g: 1, b: 0, a: 0}
+  - {r: 0.034482956, g: 0, b: 1, a: 0}
+  - {r: 0, g: 1, b: 0.95862055, a: 0}
+  - {r: 1, g: 0.59999996, b: 0, a: 0}
+  - {r: 1, g: 0, b: 0.76551723, a: 0}
+  - {r: 0.6965518, g: 0, b: 1, a: 0}
+  - {r: 1, g: 1, b: 1, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
