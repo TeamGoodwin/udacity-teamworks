@@ -270,6 +270,82 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400022, guid: 1343b27f66c6e45a2a21f3c6d548d322, type: 3}
   m_PrefabInternal: {fileID: 124994342}
+--- !u!1 &336111589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 336111592}
+  - component: {fileID: 336111591}
+  - component: {fileID: 336111590}
+  m_Layer: 5
+  m_Name: LevelEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &336111590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 336111589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 100
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'End of Level Text
+
+'
+--- !u!222 &336111591
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 336111589}
+--- !u!224 &336111592
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 336111589}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1318852655}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -12, y: -59}
+  m_SizeDelta: {x: 630, y: 480}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &371782401
 Prefab:
   m_ObjectHideFlags: 0
@@ -1213,6 +1289,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1752582274}
+  - {fileID: 336111592}
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1525,9 +1602,8 @@ GameObject:
   - component: {fileID: 1752582277}
   - component: {fileID: 1752582276}
   - component: {fileID: 1752582275}
-  - component: {fileID: 1752582278}
   m_Layer: 5
-  m_Name: Display
+  m_Name: HudDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1559,13 +1635,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1752582273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43e6d07a37f7a430b8bf416048960e83, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c1915907aa414a589805a0a257c2ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTimeSeconds: 90
-  hudManager: {fileID: 1752582278}
-  goLevelSumamry: {fileID: 0}
-  endSceneTime: 3
+  displayText: {fileID: 1752582276}
 --- !u!114 &1752582276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1598,25 +1671,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: HUD Text
 --- !u!222 &1752582277
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1752582273}
---- !u!114 &1752582278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1752582273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c1915907aa414a589805a0a257c2ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayText: {fileID: 1752582276}
 --- !u!1 &1769779752
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,6 +1827,11 @@ Prefab:
       propertyPath: randomSeed
       value: 1142290818
       objectReference: {fileID: 0}
+    - target: {fileID: 114991547591761500, guid: 0c618008dd8e4924b9885447735a82ee,
+        type: 2}
+      propertyPath: bonusScore
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c618008dd8e4924b9885447735a82ee, type: 2}
   m_IsPrefabParent: 0
@@ -1781,6 +1847,7 @@ GameObject:
   - component: {fileID: 1825669154}
   - component: {fileID: 1825669153}
   - component: {fileID: 1825669152}
+  - component: {fileID: 1825669157}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1859,6 +1926,19 @@ Transform:
   m_Father: {fileID: 1322503159}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1825669157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1825669151}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71409e1f6d0ac714aa1f38604715fa2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Post_Outline: {fileID: 4800000, guid: eea9c31b7a8b0d1448e49e152632fa40, type: 3}
+  DrawSimple: {fileID: 4800000, guid: 58f0aec887dd89f40bbbc0d8fa9a45d3, type: 3}
 --- !u!1 &1919908234 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1383389714060786, guid: 0c618008dd8e4924b9885447735a82ee,
@@ -1930,9 +2010,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2099954097}
   - component: {fileID: 2099954096}
-  - component: {fileID: 2099954098}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: GameplayManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1949,9 +2028,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e6d07a37f7a430b8bf416048960e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTimeSeconds: 90
-  hudManager: {fileID: 1752582278}
-  goLevelSumamry: {fileID: 0}
+  gameTimeSeconds: 30
+  hudManager: {fileID: 1752582275}
+  goLevelSumamry: {fileID: 336111589}
   endSceneTime: 3
 --- !u!4 &2099954097
 Transform:
@@ -1966,25 +2045,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2099954098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2099954095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa0a6df72ad7641059dd80819600c29e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colours:
-  - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 0, g: 1, b: 0.25517225, a: 0}
-  - {r: 0.94482756, g: 1, b: 0, a: 0}
-  - {r: 0.034482956, g: 0, b: 1, a: 0}
-  - {r: 0, g: 1, b: 0.95862055, a: 0}
-  - {r: 1, g: 0.59999996, b: 0, a: 0}
-  - {r: 1, g: 0, b: 0.76551723, a: 0}
-  - {r: 0.6965518, g: 0, b: 1, a: 0}
-  - {r: 1, g: 1, b: 1, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
