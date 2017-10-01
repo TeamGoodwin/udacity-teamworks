@@ -33,17 +33,21 @@ public class BallShooter : MonoBehaviour {
 	// Hidden public variables
 	public Action<Ammo> weaponChanged;			//  Notifcations when the weapon has been changed
 
-
 	// Private variables
 	private GameObject ball;					// Track the current ammo
 	private float fireCountdown = 0.0f;			// How long until we can fire next?
 	private float shotTime;						// How long between shots (based on fire rate public variable)
 	private Ammo ammoProps;						// Current ammuntion properties
 
+	// Check the current GamePlay state
+	GameplayManager gameplayManager;
+
 	bool laserFiring = false;
 
 	// Use this for initialization
 	void Start () {
+		gameplayManager = GameplayManager.GetGameplayManager ();
+
 		InitVars ();
 	}
 		
@@ -79,17 +83,19 @@ public class BallShooter : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		// Every time the player stops firing, update the ammo type
-		if (Input.GetButtonUp ("Fire1")) {
-			ammoProps = new Ammo ();
-			UpdateWeapon ();
-		}
+		if (gameplayManager.State == PlayState.Playing) {
+			// Every time the player stops firing, update the ammo type
+			if (Input.GetButtonUp ("Fire1")) {
+				ammoProps = new Ammo ();
+				UpdateWeapon ();
+			}
 
-		// Fire the ball if appropriate
-		if (useLaser) {
-			CheckLaserFiring ();
-		} else {
-			CheckBallFiring ();
+			// Fire the ball if appropriate
+			if (useLaser) {
+				CheckLaserFiring ();
+			} else {
+				CheckBallFiring ();
+			}
 		}
 
 	}

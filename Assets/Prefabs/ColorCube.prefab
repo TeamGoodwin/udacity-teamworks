@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1383389714060786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.619, y: -0.19, z: 0.010000229}
+  m_LocalPosition: {x: -3.21, y: 0.09, z: 8.627}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,6 +108,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completeClip: {fileID: 8300000, guid: 17e8fc1fb37694edcbc63dc5bcb4edcf, type: 3}
+  hitScore: 5
+  hitsToBonus: 50
+  bonusScore: 40
+  colorCompeleteThreshold: 0.5
 --- !u!198 &198777151580613836
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -167,7 +171,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 856785625
+  randomSeed: -530134355
   InitialModule:
     serializedVersion: 3
     enabled: 1
