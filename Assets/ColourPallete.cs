@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ColourPallete : MonoBehaviour {
 
-	public Color[] colours;
+	public Color[] _colours;
 
 	public Color GetColour()
 	{
-		return colours[Random.Range(0, colours.Length)];
+		return _colours[Random.Range(0, _colours.Length)];
 	}
 }

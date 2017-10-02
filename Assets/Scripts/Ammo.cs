@@ -7,6 +7,9 @@ public class Ammo  {
 	public Color color;
 
 	public Ammo() {
-		color = new Color(Random.value, Random.value, Random.value);
+        GameplayManager gpMan = GameplayManager.GetGameplayManager();
+        ColourPallete cp = gpMan.GetComponent<ColourPallete>();
+        Color newCol = cp.GetColour();
+        color = new Color(newCol.r, newCol.g, newCol.b);
 	}
 }
