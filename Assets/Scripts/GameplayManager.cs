@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum PlayState
 {
@@ -27,6 +28,9 @@ public class GameplayManager : MonoBehaviour {
 	private int currentScore = 0;
 	private int maxScore = 0;
 
+	// Hidden public members
+	public Action levelOver;
+
 	private bool dirty = false;
 
 	private PlayState playState = PlayState.Playing;
@@ -37,7 +41,7 @@ public class GameplayManager : MonoBehaviour {
 		StartTimer ();
 
 		if (goLevelSumamry) {
-			goLevelSumamry.active = false;
+			goLevelSumamry.SetActive (false);
 		} else {
 			Debug.Log ("No Level Summary Object set on Gameplay Mangager");
 		}
@@ -129,8 +133,6 @@ public class GameplayManager : MonoBehaviour {
 			+ "Your score was " + currentScore + "\n";
 		}
 
-		displayText += "\nPress fire to restart";
-
 		// Get end of level text screen
 		UnityEngine.UI.Text uiText = goLevelSumamry.GetComponent<UnityEngine.UI.Text>();
 		if (uiText) {
@@ -138,7 +140,12 @@ public class GameplayManager : MonoBehaviour {
 		}
 
 		if (goLevelSumamry) {
-			goLevelSumamry.active = true;
+			goLevelSumamry.SetActive(true);
+		}
+
+		// Signal to all subscribers that the level is over
+		if (levelOver != null) {
+			levelOver ();
 		}
 	}
 
@@ -147,6 +154,14 @@ public class GameplayManager : MonoBehaviour {
 		endSceneCountDown -= Time.deltaTime;
 		if (endSceneCountDown <= 0f) {
 			playState = PlayState.EndOfLevel;
+
+			string displayText = "\nPress fire to restart";
+
+			// Get end of level text screen
+			UnityEngine.UI.Text uiText = goLevelSumamry.GetComponent<UnityEngine.UI.Text>();
+			if (uiText) {
+				uiText.text += displayText;
+			}
 		}
 	}
 

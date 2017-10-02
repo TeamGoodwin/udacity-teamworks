@@ -1386,7 +1386,7 @@ MonoBehaviour:
   continuous: 1
   repeatRateRpm: 600
   m_GunFlare: {fileID: 427129850}
-  laserLength: 70
+  laserLength: 100
   laserTime: 0.07
   pulseDelay: 0.1
   shootSpeed: 14

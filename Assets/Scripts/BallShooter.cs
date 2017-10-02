@@ -48,6 +48,9 @@ public class BallShooter : MonoBehaviour {
 	void Start () {
 		gameplayManager = GameplayManager.GetGameplayManager ();
 
+		// Subscribe to the level over event
+		gameplayManager.levelOver += levelOver;
+
 		InitVars ();
 	}
 		
@@ -142,7 +145,7 @@ public class BallShooter : MonoBehaviour {
 	private void InitVars()
 	{
 		ammoProps = new Ammo ();
-		UpdateWeapon ();	
+		UpdateWeapon ();
 		ReInitVars();
 	}
 
@@ -249,6 +252,11 @@ public class BallShooter : MonoBehaviour {
 			}
 		} while(laserFiring && continuous);
 
+	}
+
+	void levelOver()
+	{
+		StopLaser ();
 	}
 }
 
