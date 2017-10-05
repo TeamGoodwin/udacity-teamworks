@@ -16,8 +16,6 @@ public class HudManager : MonoBehaviour {
 		// Check if we need to update the text
 		if (dirty) {
 			dirty = false;
-			string timeString = "";
-			string scoreString = "";
 			string displayString = "Score: " + score + " /  " + totalScore + "\n"
 				+ "Time: " + new System.TimeSpan(0,0,Mathf.RoundToInt(remainingTime));
 			if (displayText) {
