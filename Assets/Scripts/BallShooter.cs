@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(LineRenderer))]
 public class BallShooter : MonoBehaviour {
 
@@ -38,6 +37,7 @@ public class BallShooter : MonoBehaviour {
 	private float fireCountdown = 0.0f;			// How long until we can fire next?
 	private float shotTime;						// How long between shots (based on fire rate public variable)
 	private Ammo ammoProps;						// Current ammuntion properties
+	private AudioSource laserSound;
 
 	// Check the current GamePlay state
 	GameplayManager gameplayManager;
@@ -47,6 +47,7 @@ public class BallShooter : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameplayManager = GameplayManager.GetGameplayManager ();
+		laserSound = GetComponent<AudioSource> ();
 
 		// Subscribe to the level over event
 		gameplayManager.levelOver += levelOver;
@@ -183,6 +184,8 @@ public class BallShooter : MonoBehaviour {
 		m_GunFlare.startColor = ammoProps.color;
 		m_GunFlare.endColor = ammoProps.color;
 
+		laserSound.Play ();
+
 		// Whilst the line renderer is on move it with the gun.
 		yield return StartCoroutine (MoveLineRenderer (lineLength));
 	}
@@ -190,6 +193,7 @@ public class BallShooter : MonoBehaviour {
 	private void StopLaser()
 	{
 		laserFiring = false;
+		laserSound.Stop ();
 	}
 
 	private void FirePaintball()

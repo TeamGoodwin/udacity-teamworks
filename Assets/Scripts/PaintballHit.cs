@@ -72,7 +72,7 @@ public class PaintballHit : MonoBehaviour {
 			ParticleSystem.MainModule main = _particles.main;
 			main.startColor = _renderer.material.color;
 			_particles.Play ();
-			AudioSource.PlayClipAtPoint (completeClip, transform.position);
+			AudioSource.PlayClipAtPoint (completeClip, Camera.main.transform.position, 0.3f);
 			_painted = true;
 
 			// We score an instant bonus when the color is complete
