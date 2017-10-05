@@ -24,7 +24,7 @@ public class PaintballHit : MonoBehaviour {
 	void Awake()
 	{
 		_renderer = GetComponent<Renderer> ();
-		_particles = GetComponent<ParticleSystem> ();
+		_particles = GetComponentInChildren<ParticleSystem> ();
 		gpMan = GameplayManager.GetGameplayManager ();
 	}
 
