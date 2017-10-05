@@ -97,7 +97,7 @@ public class GameplayManager : MonoBehaviour {
 		} else if (playState == PlayState.EndOfLevel){
 			// Wait for the fire button and restart
 			if (Input.GetButtonDown("Fire1")) {
-				UnityEngine.SceneManagement.SceneManager.LoadScene ("StartScene");
+				UnityEngine.SceneManagement.SceneManager.LoadScene ("StartScene2");
 			}
 		}
 	}
