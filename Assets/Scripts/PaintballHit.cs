@@ -49,20 +49,23 @@ public class PaintballHit : MonoBehaviour {
 
 	public void LaserHit(Color col)
 	{
-		// Calculate the color increments
-		float colorIncrement = colorCompeleteThreshold / hitsToBonus;
-		_colorComplete += colorIncrement;
+        if (!_painted)
+        {
+            // Calculate the color increments
+            float colorIncrement = colorCompeleteThreshold / hitsToBonus;
+            _colorComplete += colorIncrement;
 
-		// Update the color
-		Color newCol = Color.Lerp (_renderer.material.color, col, _colorComplete);
-		_renderer.material.color = newCol;
+            // Update the color
+            Color newCol = Color.Lerp(_renderer.material.color, col, _colorComplete);
+            _renderer.material.color = newCol;
 
-		// Update the hit count, register the score
-		if (!_painted) {
-			hitCount++;
-			gpMan.addScore (hitScore);
-		}
-
+            // Update the hit count, register the score
+            if (!_painted)
+            {
+                hitCount++;
+                gpMan.addScore(hitScore);
+            }
+        }
 	}
 
 	void Update()
