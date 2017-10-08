@@ -113,6 +113,11 @@ public class BallShooter : MonoBehaviour {
 					if (pbHit) {
 						pbHit.LaserHit (ammoProps.color);
 					}
+
+					Waypoint waypoint = hit.collider.gameObject.GetComponent<Waypoint> ();
+					if (waypoint) {
+						waypoint.Click ();
+					}
 				}
 			}
 		}
