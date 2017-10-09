@@ -7,11 +7,11 @@ public class AmmoUpdate : MonoBehaviour {
 
 	private Renderer objRend;
 
-	void Start()
-	{
-		ballShooter.weaponChanged += AmmoUpdated;
-		objRend = GetComponent<Renderer>();
-	}
+    private void Awake()
+    {
+        ballShooter.weaponChanged += AmmoUpdated;
+        objRend = GetComponent<Renderer>();
+    }
 
 	public void AmmoUpdated(Ammo ammo)
 	{
