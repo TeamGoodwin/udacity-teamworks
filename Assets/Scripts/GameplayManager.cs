@@ -125,14 +125,22 @@ public class GameplayManager : MonoBehaviour {
 
 		string displayText = "";
 
-		if (currentScore == maxScore) {
-			displayText = "You're Awesome!\n"
-				+ "You beat the level with " + new System.TimeSpan (0, 0, Mathf.RoundToInt(timeRem)) + " to spare\n"
-			+ "You get the top level score of " + maxScore + "\n";
-		} else {
-			displayText = "Great job guys!\n"
-			+ "Your score was " + currentScore + "\n";
-		}
+        if (currentScore == maxScore)
+        {
+            displayText = "You're Awesome!\n"
+                + "You beat the level with " + new System.TimeSpan(0, 0, Mathf.RoundToInt(timeRem)) + " to spare\n"
+            + "You get the top level score of " + maxScore + "\n";
+        }
+        else if (currentScore == 0)
+        {
+            displayText = "Seriously, did you try to hit anything?\n"
+                + "You should try again";
+        }
+        else
+        {
+            displayText = "Great job guys!\n"
+            + "Your score was " + currentScore + "\n";
+        }
 
 		// Get end of level text screen
 		UnityEngine.UI.Text uiText = goLevelSumamry.GetComponent<UnityEngine.UI.Text>();
