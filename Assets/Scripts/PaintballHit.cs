@@ -14,9 +14,11 @@ public class PaintballHit : MonoBehaviour {
 	public int hitScore = 5;
 	public int hitsToBonus = 50;
 	public int bonusScore = 35;
-	public float colorCompeleteThreshold = 0.5f;
+	public float colorCompeleteThreshold = 0.1f;
 
 	private int hitCount = 0;
+    private Color startColor;
+    private Color hitColor;
 
 
 	private GameplayManager gpMan;
@@ -32,6 +34,7 @@ public class PaintballHit : MonoBehaviour {
 	{
 		gpMan = GameplayManager.GetGameplayManager ();
 		RegisterMaxScore ();
+        startColor = _renderer.material.color;
 	}
 
 
@@ -51,12 +54,15 @@ public class PaintballHit : MonoBehaviour {
 	{
         if (!_painted)
         {
+            // TODO: Color should only be set-able once ultimately, for now, just store the last hit color:
+            hitColor = col;
+            
             // Calculate the color increments
             float colorIncrement = colorCompeleteThreshold / hitsToBonus;
             _colorComplete += colorIncrement;
 
             // Update the color
-            Color newCol = Color.Lerp(_renderer.material.color, col, _colorComplete);
+            Color newCol = Color.Lerp(startColor, col, _colorComplete);
             _renderer.material.color = newCol;
 
             // Update the hit count, register the score
@@ -71,9 +77,10 @@ public class PaintballHit : MonoBehaviour {
 	void Update()
 	{
 		// Check for completion of the color
-		if (_colorComplete >= 0.5f && !_painted) {
+		if (_colorComplete >= colorCompeleteThreshold && !_painted) {
 			ParticleSystem.MainModule main = _particles.main;
-			main.startColor = _renderer.material.color;
+            _renderer.material.color = hitColor;
+            main.startColor = _renderer.material.color;
 			_particles.Play ();
 			AudioSource.PlayClipAtPoint (completeClip, Camera.main.transform.position, 0.3f);
 			_painted = true;
