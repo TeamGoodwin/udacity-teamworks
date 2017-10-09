@@ -180,7 +180,7 @@ public class BallShooter : MonoBehaviour {
 			lineLength = Vector3.Distance (m_spawnPoint.transform.position, target.position);
 
 		// Set the shader color
-		m_GunFlare.material = new Material(Shader.Find("Particles/Additive"));
+		m_GunFlare.material = new Material(Shader.Find("Mobile/Particles/Additive"));
 		m_GunFlare.startColor = ammoProps.color;
 		m_GunFlare.endColor = ammoProps.color;
 
