@@ -113,7 +113,8 @@ public class PaintballHit : MonoBehaviour {
 	void InstantBonus()
 	{
 		UpdateScore (hitsToBonus - hitCount);
-	}
+        gpMan.ObjectComplete(_renderer.material.color);
+    }
 
 	void RegisterMaxScore () {
 		int maxScore = hitsToBonus * hitScore + bonusScore;

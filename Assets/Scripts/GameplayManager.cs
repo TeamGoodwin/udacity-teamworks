@@ -30,6 +30,7 @@ public class GameplayManager : MonoBehaviour {
 
 	// Hidden public members
 	public Action levelOver;
+    public Action<Color> objectComplete;
 
 	private bool dirty = false;
 
@@ -183,6 +184,15 @@ public class GameplayManager : MonoBehaviour {
 
 		return levMan;
 	}
+
+    // Notification when an object has been completed
+    public void ObjectComplete(Color col)
+    {
+        if (objectComplete != null)
+        {
+            objectComplete(col);
+        }
+    }
 
 	public PlayState State {
 		get {

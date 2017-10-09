@@ -38,19 +38,29 @@ public class BallShooter : MonoBehaviour {
 	private float shotTime;						// How long between shots (based on fire rate public variable)
 	private Ammo ammoProps;						// Current ammuntion properties
 	private AudioSource laserSound;
+    private bool forcedStop = false;
 
-	// Check the current GamePlay state
-	GameplayManager gameplayManager;
+    ParticleSystem _particles;
+
+
+    // Check the current GamePlay state
+    GameplayManager gameplayManager;
 
 	bool laserFiring = false;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        _particles = GetComponentInChildren<ParticleSystem>();
+    }
+
+    // Use this for initialization
+    void Start () {
 		gameplayManager = GameplayManager.GetGameplayManager ();
 		laserSound = GetComponent<AudioSource> ();
 
 		// Subscribe to the level over event
 		gameplayManager.levelOver += levelOver;
+        gameplayManager.objectComplete += ObjectComplete;
 
 		InitVars ();
 	}
@@ -88,12 +98,6 @@ public class BallShooter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (gameplayManager.State == PlayState.Playing) {
-			// Every time the player stops firing, update the ammo type
-			if (Input.GetButtonUp ("Fire1")) {
-				ammoProps = new Ammo ();
-				UpdateWeapon ();
-			}
-
 			// Fire the ball if appropriate
 			if (useLaser) {
 				CheckLaserFiring ();
@@ -157,13 +161,21 @@ public class BallShooter : MonoBehaviour {
 
 	void CheckLaserFiring()
 	{
-		if (Input.GetButtonDown ("Fire1")) {
-			// We started firing
-			StartCoroutine(FireLaser ());
-		} 
-		else if (Input.GetButtonUp ("Fire1") && continuous) {
-			// We stopped firing in a continuous fire situation
-			StopLaser();
+        if (Input.GetButtonDown("Fire1")) {
+            // We started firing
+            StartCoroutine(FireLaser());
+        }
+        else if (Input.GetButtonUp("Fire1") && continuous) {
+            if (forcedStop)
+            {
+                forcedStop = false;
+            } else
+            {
+                // We stopped firing in a continuous fire situation
+                StopLaser(false);
+                ChangeAmmo();
+            }
+			
 		}
 	}
 
@@ -190,9 +202,10 @@ public class BallShooter : MonoBehaviour {
 		yield return StartCoroutine (MoveLineRenderer (lineLength));
 	}
 
-	private void StopLaser()
+	private void StopLaser(bool forced = false)
 	{
-		laserFiring = false;
+        forcedStop = forced;
+        laserFiring = false;
 		laserSound.Stop ();
 	}
 
@@ -258,10 +271,31 @@ public class BallShooter : MonoBehaviour {
 
 	}
 
-	void levelOver()
+	private void levelOver()
 	{
-		StopLaser ();
+        StopLaser (true);
 	}
+
+    // Actions to take when an object has been completed
+    private void ObjectComplete(Color col)
+    {
+        // FireParticles(col); TODO: Make something happen to the gun when an object is completed
+        ChangeAmmo();
+        StopLaser(true);
+    }
+
+    private void FireParticles(Color col)
+    {
+        ParticleSystem.MainModule main = _particles.main;
+        main.startColor = col;
+        _particles.Play();
+    }
+
+    private void ChangeAmmo()
+    {
+        ammoProps = new Ammo();
+        UpdateWeapon();
+    }
 }
 
 
