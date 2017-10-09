@@ -6,8 +6,17 @@ public class ColourPallete : MonoBehaviour {
 
 	public Color[] _colours;
 
+    private int lastColorIndex  = -1;
+
 	public Color GetColour()
 	{
-		return _colours[Random.Range(0, _colours.Length)];
+        int colIndex;
+        do
+        {
+            colIndex = Random.Range(0, _colours.Length);
+        } while (lastColorIndex == colIndex && _colours.Length > 1);
+        lastColorIndex = colIndex;
+        
+        return _colours[colIndex];
 	}
 }
