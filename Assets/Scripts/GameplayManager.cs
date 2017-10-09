@@ -10,120 +10,139 @@ public enum PlayState
 	EndOfLevel
 };
 
-public class GameplayManager : MonoBehaviour {
+public class GameplayManager : MonoBehaviour
+{
 
 
 
-	public float gameTimeSeconds = 90;
-	public HudManager hudManager;
-	public GameObject goLevelSumamry;
-	public float endSceneTime = 3.0f;
+    public float gameTimeSeconds = 90;
+    public HudManager hudManager;
+    public GameObject goLevelSumamry;
+    public float endSceneTime = 3.0f;
 
-	// Timing
-	private float timeRem = 0;
-	private bool done = false;
-	private float endSceneCountDown = 0f;
+    // Timing
+    private float timeRem = 0;
+    private bool done = false;
+    private float endSceneCountDown = 0f;
 
-	// Scorekeeping
-	private int currentScore = 0;
-	private int maxScore = 0;
+    // Scorekeeping
+    private int currentScore = 0;
+    private int maxScore = 0;
 
-	// Hidden public members
-	public Action levelOver;
+    // Hidden public members
+    public Action levelOver;
     public Action<Color> objectComplete;
 
-	private bool dirty = false;
+    private bool dirty = false;
 
-	private PlayState playState = PlayState.Playing;
+    private PlayState playState = PlayState.Playing;
 
-	// Use this for initialization
-	void Start () {
-		ResetTimer ();
-		StartTimer ();
+    // Use this for initialization
+    void Start()
+    {
+        ResetTimer();
+        StartTimer();
 
-		if (goLevelSumamry) {
-			goLevelSumamry.SetActive (false);
-		} else {
-			Debug.Log ("No Level Summary Object set on Gameplay Mangager");
-		}
-	}
+        if (goLevelSumamry)
+        {
+            goLevelSumamry.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("No Level Summary Object set on Gameplay Mangager");
+        }
+    }
 
-	void StartTimer()
-	{
-		timeRem = gameTimeSeconds;
-	}
+    void StartTimer()
+    {
+        timeRem = gameTimeSeconds;
+    }
 
-	void ResetTimer()
-	{
-		done = false;
-	}
+    void ResetTimer()
+    {
+        done = false;
+    }
 
-	// Get the current time
-	public float CurrentTime {
-		get {
-			return timeRem;
-		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Get the current time
+    public float CurrentTime
+    {
+        get
+        {
+            return timeRem;
+        }
+    }
 
-		if (playState == PlayState.Playing) {
-			// Manage the timer
-			if (timeRem > 0f && !done) {
-				timeRem -= Time.deltaTime;
-				if (timeRem <= 0f) {
-					done = true;
-				}
+    // Update is called once per frame
+    void Update()
+    {
 
-				// Update the HUD manager
-				if (hudManager) {
-					hudManager.RemainingTime = timeRem;
-				}
-			}
+        if (playState == PlayState.Playing)
+        {
+            // Manage the timer
+            if (timeRem > 0f && !done)
+            {
+                timeRem -= Time.deltaTime;
+                if (timeRem <= 0f)
+                {
+                    done = true;
+                }
 
-			// If the score changed updated the HUD
-			if (dirty) {
-				dirty = false;
-				hudManager.TotalScore = maxScore;
-				hudManager.Score = currentScore;
-			}
+                // Update the HUD manager
+                if (hudManager)
+                {
+                    hudManager.RemainingTime = timeRem;
+                }
+            }
 
-			// Check if we beat the leavel
-			if (currentScore >= maxScore || done) {
-				EndOfLevel ();
-			}
-		} else if (playState == PlayState.LevelEnding){
-			UpdateLevelEnding ();
-		} else if (playState == PlayState.EndOfLevel){
-			// Wait for the fire button and restart
-			if (Input.GetButtonDown("Fire1")) {
-				UnityEngine.SceneManagement.SceneManager.LoadScene ("StartScene2");
-			}
-		}
-	}
+            // If the score changed updated the HUD
+            if (dirty)
+            {
+                dirty = false;
+                hudManager.TotalScore = maxScore;
+                hudManager.Score = currentScore;
+            }
 
-	// Increment the score when a suitable game event occurs
-	public void addScore(int value)
-	{
-		currentScore += value;
-		dirty = true;
-	}
+            // Check if we beat the leavel
+            if (currentScore >= maxScore || done)
+            {
+                EndOfLevel();
+            }
+        }
+        else if (playState == PlayState.LevelEnding)
+        {
+            UpdateLevelEnding();
+        }
+        else if (playState == PlayState.EndOfLevel)
+        {
+            // Wait for the fire button and restart
+            if (Input.GetButtonDown("Fire1"))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene2");
+            }
+        }
+    }
 
-	// Register the maximum scores an item can provide so we can track possible max score
-	public void registerItemMaxScore(int value)
-	{
-		maxScore += value;
-		dirty = true;
-	}
+    // Increment the score when a suitable game event occurs
+    public void addScore(int value)
+    {
+        currentScore += value;
+        dirty = true;
+    }
 
-	void EndOfLevel()
-	{
-		// Begin the scene ending process
-		playState = PlayState.LevelEnding;
-		endSceneCountDown = endSceneTime;
+    // Register the maximum scores an item can provide so we can track possible max score
+    public void registerItemMaxScore(int value)
+    {
+        maxScore += value;
+        dirty = true;
+    }
 
-		string displayText = "";
+    void EndOfLevel()
+    {
+        // Begin the scene ending process
+        playState = PlayState.LevelEnding;
+        endSceneCountDown = endSceneTime;
+
+        string displayText = "";
 
         if (currentScore == maxScore)
         {
@@ -142,56 +161,65 @@ public class GameplayManager : MonoBehaviour {
             + "Your score was " + currentScore + "\n";
         }
 
-		// Get end of level text screen
-		UnityEngine.UI.Text uiText = goLevelSumamry.GetComponent<UnityEngine.UI.Text>();
-		if (uiText) {
-			uiText.text = displayText;
-		}
+        // Get end of level text screen
+        UnityEngine.UI.Text uiText = goLevelSumamry.GetComponent<UnityEngine.UI.Text>();
+        if (uiText)
+        {
+            uiText.text = displayText;
+        }
 
-		if (goLevelSumamry) {
-			goLevelSumamry.SetActive(true);
-		}
+        if (goLevelSumamry)
+        {
+            goLevelSumamry.SetActive(true);
+        }
 
-		// Signal to all subscribers that the level is over
-		if (levelOver != null) {
-			levelOver ();
-		}
-	}
+        // Signal to all subscribers that the level is over
+        if (levelOver != null)
+        {
+            levelOver();
+        }
+    }
 
-	void UpdateLevelEnding()
-	{
-		endSceneCountDown -= Time.deltaTime;
-		if (endSceneCountDown <= 0f) {
-			playState = PlayState.EndOfLevel;
+    void UpdateLevelEnding()
+    {
+        endSceneCountDown -= Time.deltaTime;
+        if (endSceneCountDown <= 0f)
+        {
+            playState = PlayState.EndOfLevel;
 
-			string displayText = "\nPress fire to restart";
+            string displayText = "\nPress fire to restart";
 
-			// Get end of level text screen
-			UnityEngine.UI.Text uiText = goLevelSumamry.GetComponent<UnityEngine.UI.Text>();
-			if (uiText) {
-				uiText.text += displayText;
-			}
-		}
-	}
+            // Get end of level text screen
+            UnityEngine.UI.Text uiText = goLevelSumamry.GetComponent<UnityEngine.UI.Text>();
+            if (uiText)
+            {
+                uiText.text += displayText;
+            }
+        }
+    }
 
-	public static GameplayManager GetGameplayManager()
-	{		
-		GameplayManager levMan = null;
+    public static GameplayManager GetGameplayManager()
+    {
+        GameplayManager levMan = null;
 
-		// Get the Level manager
-		GameObject goLev = GameObject.Find("GameplayManager");
-		if (goLev) {
-			// Find the Level Manager script
-			levMan = goLev.GetComponent<GameplayManager>();
-			if (!levMan) {
-				Debug.Log ("Cannot find Gameplay Manager script");
-			}
-		} else {
-			Debug.Log ("Error finding Gameplay Manager Game Object");
-		}
+        // Get the Level manager
+        GameObject goLev = GameObject.Find("GameplayManager");
+        if (goLev)
+        {
+            // Find the Level Manager script
+            levMan = goLev.GetComponent<GameplayManager>();
+            if (!levMan)
+            {
+                Debug.Log("Cannot find Gameplay Manager script");
+            }
+        }
+        else
+        {
+            Debug.Log("Error finding Gameplay Manager Game Object");
+        }
 
-		return levMan;
-	}
+        return levMan;
+    }
 
     // Notification when an object has been completed
     public void ObjectComplete(Color col)
@@ -202,9 +230,15 @@ public class GameplayManager : MonoBehaviour {
         }
     }
 
-	public PlayState State {
-		get {
-			return playState;
-		}
-	}
+    public PlayState State
+    {
+        get
+        {
+            return playState;
+        }
+    }
+
+    public GameObject SpawnPoint { get; set; }
+    public GameObject Weapon { get; set; }
+
 }

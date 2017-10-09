@@ -12,7 +12,6 @@ public class BallShooter : MonoBehaviour {
 	// Common properties
 	public bool useLaser = false;				// Should we use the laser or the paintball
 	/// </summary>
-	public GameObject m_spawnPoint;				// Where should the amo spawn?
 	public GameObject weapon;					// The weapon used so we can update it
 	public bool singleShot = true;				// Are we restricted to one shot at a time
 	public bool continuous = false;				// Can we fire continuously
@@ -111,7 +110,7 @@ public class BallShooter : MonoBehaviour {
 	void FixedUpdate() {
 		if (laserFiring == true) {
 			RaycastHit hit;
-			if (Physics.Raycast (m_spawnPoint.transform.position, m_spawnPoint.transform.forward, out hit)) {
+			if (Physics.Raycast (gameplayManager.SpawnPoint.transform.position, gameplayManager.SpawnPoint.transform.forward, out hit)) {
 				if (hit.collider != null) {
 					PaintballHit pbHit = hit.collider.gameObject.GetComponent<PaintballHit> ();
 					if (pbHit) {
@@ -189,7 +188,7 @@ public class BallShooter : MonoBehaviour {
 
 		// If there is a target, the line renderer's length is instead the distance from the gun to the target.
 		if (target)
-			lineLength = Vector3.Distance (m_spawnPoint.transform.position, target.position);
+			lineLength = Vector3.Distance (gameplayManager.SpawnPoint.transform.position, target.position);
 
 		// Set the shader color
 		m_GunFlare.material = new Material(Shader.Find("Mobile/Particles/Additive"));
@@ -212,23 +211,23 @@ public class BallShooter : MonoBehaviour {
 	private void FirePaintball()
 	{
 		ball = Instantiate (ballPrefab);
-		ball.transform.position = m_spawnPoint.transform.position;
+		ball.transform.position = gameplayManager.SpawnPoint.transform.position;
 		Rigidbody ballRb = ball.GetComponentInChildren<Rigidbody> ();
-		ballRb.velocity = m_spawnPoint.transform.forward * shootSpeed;
+		ballRb.velocity = gameplayManager.SpawnPoint.transform.forward * shootSpeed;
 		BallBehaviour bb =  ball.GetComponent<BallBehaviour>();
 		if (bb != null) {
 			bb.ammo = ammoProps;
 		}
 		if (ballFireClip) {
-			AudioSource.PlayClipAtPoint (ballFireClip, m_spawnPoint.transform.position);
+			AudioSource.PlayClipAtPoint (ballFireClip, gameplayManager.SpawnPoint.transform.position);
 		}
 	}
 
 	private void MoveLaser(float lineLength)
 	{
 		// ... set the line renderer to start at the gun and finish forward of the gun the determined distance.
-		m_GunFlare.SetPosition(0, m_spawnPoint.transform.position);
-		m_GunFlare.SetPosition(1, m_spawnPoint.transform.position + m_spawnPoint.transform.forward * lineLength);
+		m_GunFlare.SetPosition(0, gameplayManager.SpawnPoint.transform.position);
+		m_GunFlare.SetPosition(1, gameplayManager.SpawnPoint.transform.position + gameplayManager.SpawnPoint.transform.forward * lineLength);
 	}
 
 	private IEnumerator MoveLineRenderer (float lineLength)
