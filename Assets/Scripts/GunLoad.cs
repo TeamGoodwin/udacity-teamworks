@@ -7,7 +7,6 @@ public class GunLoad : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		int gunPicked = SceneControl.gun;
-		Debug.Log (gunPicked);
 		GameObject uzi = GameObject.Find ("Uzi");
 		GameObject M200 = GameObject.Find ("M200");
 		GameObject SPAS = GameObject.Find ("SPAS");
