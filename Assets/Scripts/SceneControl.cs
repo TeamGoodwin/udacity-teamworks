@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneControl : MonoBehaviour {
-	public static int gun = 0;
+	public static int gun = 2;
 
 	public void LoadSceneWithUzi () {
 		SceneManager.LoadScene ("ColorPrototype");
